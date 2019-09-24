@@ -12,7 +12,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>maximum_subarray_sum.cpp</itemPath>
+      <itemPath>algorithms/knapsack_recursive</itemPath>
+      <itemPath>algorithms/knapsack_two_dim_array</itemPath>
+      <itemPath>algorithms/maximum_subarray_sum</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -36,7 +38,11 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="maximum_subarray_sum.cpp" ex="false" tool="1" flavor2="0">
+      <item path="algorithms/knapsack_recursive" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="algorithms/knapsack_two_dim_array" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="algorithms/maximum_subarray_sum" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -59,7 +65,11 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="maximum_subarray_sum.cpp" ex="false" tool="1" flavor2="0">
+      <item path="algorithms/knapsack_recursive" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="algorithms/knapsack_two_dim_array" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="algorithms/maximum_subarray_sum" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
