@@ -12,9 +12,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>algorithms/knapsack_recursive</itemPath>
-      <itemPath>algorithms/knapsack_two_dim_array</itemPath>
-      <itemPath>algorithms/maximum_subarray_sum</itemPath>
+      <itemPath>algorithms/bubblesort.txt</itemPath>
+      <itemPath>algorithms/knapsack_recursive.txt</itemPath>
+      <itemPath>algorithms/knapsack_two_dim_array.txt</itemPath>
+      <itemPath>algorithms/maximum_subarray_sum.txt</itemPath>
+      <itemPath>algorithms/mergesort.txt</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -37,12 +39,25 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>11</standard>
+        </ccTool>
       </compileType>
-      <item path="algorithms/knapsack_recursive" ex="false" tool="3" flavor2="0">
+      <item path="algorithms/bubblesort.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="algorithms/knapsack_two_dim_array" ex="false" tool="3" flavor2="0">
+      <item path="algorithms/knapsack_recursive.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="algorithms/maximum_subarray_sum" ex="false" tool="3" flavor2="0">
+      <item path="algorithms/knapsack_two_dim_array.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="algorithms/maximum_subarray_sum.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="algorithms/mergesort.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -65,11 +80,21 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="algorithms/knapsack_recursive" ex="false" tool="3" flavor2="0">
+      <item path="algorithms/bubblesort.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="algorithms/knapsack_two_dim_array" ex="false" tool="3" flavor2="0">
+      <item path="algorithms/knapsack_recursive.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="algorithms/maximum_subarray_sum" ex="false" tool="3" flavor2="0">
+      <item path="algorithms/knapsack_two_dim_array.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="algorithms/maximum_subarray_sum.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="algorithms/mergesort.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
