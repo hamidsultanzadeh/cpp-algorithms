@@ -1,0 +1,41 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on September 29, 2019, 6:59 PM
+ */
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main(int argc, char** argv) {
+
+    //Binary Search alqoritmi ile ishleyir
+
+    //            1 2 3 4 5
+    //            0 1 2 3 4
+    int array[5]={1,2,5,5,5};
+    int n=5;
+    int x=5;
+    
+    //1.
+    auto a = lower_bound(array, array+n, x);
+    auto b = upper_bound(array, array+n, x);
+    
+    
+    cout<<"first x at position : "<< a - array << endl <<
+          "last x at position : "<< b - array << endl;
+    
+    cout<<"Count x : "<< b - a << "\n";
+    
+    //2. = equivalent 1
+    auto range = equal_range(array,array+n,x);
+   
+    cout<<"first x at position : "<< range.first - array << endl <<
+          "last x at position : "<< range.second - array << endl;
+    
+    cout<<"Count x : "<< range.second - range.first << "\n";
+    
+    return 0;
+}
