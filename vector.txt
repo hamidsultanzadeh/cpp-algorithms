@@ -1,0 +1,26 @@
+/* 
+ * File:   vector.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on October 7, 2019, 9:02 PM
+ */
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(int argc, char** argv) {
+    
+    vector<int> vectInitial(10,5); // size 10, value 5
+    vector<int> vect;
+    
+    for(int i=0 ; i<10 ; i++) vect.push_back(i+1);
+    
+    for(auto x : vect) cout<<x<<" ";
+
+    cout<<endl;
+    
+    for(auto xI : vectInitial) cout<<xI<<" ";
+    
+
+    return 0;
+}

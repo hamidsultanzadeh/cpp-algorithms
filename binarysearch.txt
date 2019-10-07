@@ -21,7 +21,7 @@ pair<int,int> binarySearch(int arr[],int size,int n){
         } else if(arr[middle] < n){
             left = middle + 1;
         } else if(arr[middle] == n){
-            return make_pair(arr[middle],middle+1);
+            return make_pair(arr[middle],middle+1); // return value and index
         }
     }
     

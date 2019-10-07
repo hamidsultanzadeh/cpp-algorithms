@@ -1,0 +1,45 @@
+/* 
+ * File:   set.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on October 7, 2019, 9:09 PM
+ */
+
+#include <iostream>
+#include <set>
+using namespace std;
+int main(int argc, char** argv) {
+    
+    multiset<int> mst;
+    set<int> st;
+    
+    for(int i=0 ; i<5 ; i++){
+        st.insert(5);
+        mst.insert(5);
+    }
+    
+    cout<<"Set : ";
+    
+    for(auto it : st){
+        cout<<it<<" ";
+    }
+    
+    cout<<endl<<"Multiset :";
+    
+    for(auto it : mst){
+        cout<<it<<" ";
+    }
+    
+    cout<<endl<<"Count 5 in set : "<<st.count(5)<<endl<<"Count 5 in multiset : "<<mst.count(5)<<endl;
+    
+    st.erase(5);
+    //mst.erase(5); // bu zaman butun 5-ler silinecek.
+    mst.erase(mst.find(5)); // evvelce ilk 5-in unvanini tapiriq. sonra onu silirik.
+    
+    cout<<endl<<"Count 5 in set : "<<st.count(5)<<endl<<"Count 5 in multiset : "<<mst.count(5);
+
+
+    return 0;
+}
+
+
