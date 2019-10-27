@@ -1,0 +1,94 @@
+/* 
+ * File:   bfs.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on October 27, 2019, 10:59 AM
+ */
+
+#include <iostream>
+#include <list>
+#include <queue>
+using namespace std;
+class Graph{
+    
+    int V; //duyumlerin sayi
+    
+    list<int> *adj;
+    
+public:
+    
+    Graph(int V);
+    
+    void addEdge(int v, int w);
+    
+    void BFS(int v);
+    
+};
+
+Graph::Graph(int V){
+    this->V = V;
+    adj = new list<int>[V];
+}
+
+ void Graph::addEdge(int v, int w){
+    adj[v].push_back(w);
+}
+
+void Graph::BFS(int s){
+    
+    bool *visited = new bool[V];
+    for(int i=0 ; i<V ; i++) visited[i]=false;
+    
+    queue<int> queue;
+    
+    visited[s] = true;
+    queue.push(s);
+    
+    list<int>::iterator i;
+    
+    while(!queue.empty()){ // node lari gezmek uchun
+        
+        s = queue.front(); // ekrana verdi
+        cout<<s<<" ";
+        queue.pop(); // true - atdi
+        
+        for(i = adj[s].begin() ; i!=adj[s].end() ; i++){
+            if(!visited[*i]){
+                visited[*i] = true;
+                queue.push(*i);
+            }
+        }
+        
+//        cout<<"Queue size : "<<queue.size()<<"\n";
+           
+    }
+}
+
+/* queue 0
+ * 0 - 1,5 queue 1,5
+ * 1 - 2   queue 5,2
+ * 2 - 3   queue 3
+ * 3 - 4   queue 4
+ * 4 - 5   queue null
+ */
+
+
+int main(int argc, char** argv) {
+    
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    
+    Graph g(6); 
+    g.addEdge(0, 1); 
+    g.addEdge(0, 5); 
+    g.addEdge(1, 2); 
+    g.addEdge(2, 3); 
+    g.addEdge(3, 4); 
+    g.addEdge(4, 5); 
+  
+    cout << "Following is Breadth First Traversal "
+         << "(starting from vertex 2) \n"; 
+    g.BFS(0); 
+    
+    return 0;
+}
