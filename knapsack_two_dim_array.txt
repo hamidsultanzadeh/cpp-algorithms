@@ -2,44 +2,98 @@
  * File:   main.cpp
  * Author: hamidsultanzadeh
  *
- * Created on September 24, 2019, 4:42 PM
+ * Created on October 29, 2019, 10:11 AM
  */
 
-#include <iostream>
-#include <algorithm>
-
+#include<iostream>
+#include<algorithm>
 using namespace std;
 
-int knapSack(int W, int weigth[], int value[], int n){
-    
-    int i,w;
-    int K[n+1][W+1];
-    
-    for(i=0 ; i<=n ; i++){
-        
-        for(w=0 ; w<=W ; w++){
-            
-            if(i==0 || w==0) K[i][w]=0;
-            
-            else if(weigth[i-1]<=w) K[i][w] = max(value[i-1] + K[i-1][w-weigth[i-1]] , K[i-1][w]);
-            
-            else K[i][w] = K[i-1][w];
-            
+int knapsack(int wt[], int vl[], int n, int W) {
+
+    int k[n + 1][W + 1];
+
+    for (int i = 0; i <= n; i++) {
+
+        for (int j = 0; j <= W; j++) {
+
+
+            if (i == 0 || j == 0) k[i][j] = 0;
+
+            else if (wt[i - 1] <= j) {
+                cout << "Else if : i = " << i << "	j = " << j << "\n";
+
+                cout << "first " << vl[i - 1] + k[i - 1][j - wt[i - 1]] << "\nsecond " << k[i - 1][j] << "\n";
+
+                k[i][j] = max(vl[i - 1] + k[i - 1][j - wt[i - 1]], k[i - 1][j]);
+            }
+            else {
+                cout << "Else : i = " << i << "	j = " << j << "\n";
+
+                cout << "k[i-1][j] " << k[i - 1][j] << "\n";
+                k[i][j] = k[i - 1][j];
+            }
+
+            //			cout<<k[i][j]<<" ";
         }
-        
+
+//        cout << endl;
     }
-    
-    return K[n][W];
+    cout << "Index	: ";
+    for (int i = 0; i < n; i++) cout << i << " ";
+    cout << "\nWeigth	: ";
+    for (int i = 0; i < n; i++) cout << wt[i] << " ";
+    cout << "\nValue	: ";
+    for (int i = 0; i < n; i++) cout << vl[i] << " ";
+    cout << "\n\n";
+
+    for (int i = 0; i <= n; i++) {
+
+        for (int j = 0; j <= W; j++) {
+
+            cout << k[i][j] << "    ";
+        }
+
+        cout << endl;
+    }
+
+
+    return k[n][W];
+
 }
 
-int main(int argc, char** argv) {
+int main() {
+
+    int weigth[] = {1,2,3};
+    int value[] = {4,5,6};
+
+
+    int n = sizeof (value) / sizeof (value[0]);
+    int W = 5;
+
+    cout << knapsack(weigth, value, n, W);
     
-    int value[] = {4,6,9}; 
-    int weigth[] = {2,4,3}; 
-    int  W = 4; 
-    int n = sizeof(value)/sizeof(value[0]); 
+    /*
+     * TUTAQ KI, i=3 j=5 halina baxiriq
+     * Else if bloku calishir
+     * K[i-1][w-wt[i-1]] ===> x
+     * K[2][5-3] K[2][2]
+     * Yeni 2 esya sece bildiyim halda => K[2][] (bu)
+     * ve 2 cekide olan halda K[][2]
+     * hansi deyerli esyani secmishem
+     * ve indiki ile cemi vl[i-1] + x
+     * bir evvelki halda K[i-1][j]
+     * yeni 1 esya sece bildiyim halda ve 2 cekide olan halda
+     * seciyim esya
+     * max tapiriq, hazir ki veziyyetde nezere aliriq
+     */
     
-    cout<<"Min Weigth and Max Value : "<<knapSack(W, weigth, value, n);
+    // Elave qeydler
+    // ARTIQ 2 YERIM QALIR 
+    // HEMIN YERE EVVEL NE QOYMUSHDUMSA, ONU NEZERE ALIRAM.
+    // EVVELKINDEN BOYUKDURSE ONU ISTIFADE EDECEM,
+    // EKS HALDA EVVELKI VARIANTDA ISTIFADE ETDIYIMI NEZERE ALACAM
+    
 
     return 0;
 }
