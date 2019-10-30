@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <list>
+#include <stack>
 using namespace std;
 
 class Graph{
@@ -24,6 +25,8 @@ public:
     void addEdge(int v,int w);
     
     void DFS(int v);
+    
+    void DFSIterator(int v);
     
 };
 
@@ -64,6 +67,40 @@ void Graph::DFS(int v){
 }
 
 
+
+void Graph::DFSIterator(int v){
+    
+    bool *visited = new bool[V];
+    for(int i=0 ; i<V ; i++){
+        visited[i] = false;
+    }
+    
+    stack<int> stck;
+    
+    stck.push(v);
+       
+    while(!stck.empty()){
+        
+        v = stck.top();
+        stck.pop();
+        
+        if(!visited[v]){
+            cout<< v << " ";
+            visited[v] = true;
+        }
+                    
+        for(auto it = adj[v].begin() ; it!=adj[v].end() ; it++){
+            
+            if(!visited[*it]){
+                stck.push((*it));
+            }
+            
+        }
+        
+    }
+       
+}
+
 int main(int argc, char** argv) {
     
     //v - bashlangic duyum
@@ -77,6 +114,8 @@ int main(int argc, char** argv) {
   
     cout << "Following is Depth First Traversal"<<endl; 
     g.DFS(0); //  baslangic duyumu qeyd edirik
+    cout<<"\n";
+    g.DFSIterator(0);
     
 
     return 0;
