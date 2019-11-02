@@ -1,0 +1,31 @@
+/* 
+ * File:   list.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 2, 2019, 5:09 PM
+ */
+
+#include <iostream>
+#include <list>
+using namespace std;
+int main(int argc, char** argv) {
+    
+    list<int> list1,list2;
+    
+    for(int i = 0 ; i < 5 ; i++){
+        list1.push_back(i*2);
+        list2.push_front(i*3);
+    }
+    
+    for(auto x : list1) cout<<x<<" ";
+    cout<<endl;
+    for(auto x : list2) cout<<x<<" ";
+    
+    
+    //https://www.geeksforgeeks.org/list-cpp-stl/
+
+
+    return 0;
+}
+
+
