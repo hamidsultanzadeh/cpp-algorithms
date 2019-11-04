@@ -1,0 +1,98 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 5, 2019, 8:00 PM
+ */
+
+#include <iostream>
+#define INF 9999
+#define V 9
+using namespace std;
+
+int minDistance(int dist[],bool visited[]){
+    
+    int min = INF , minIndex;
+    
+    for(int v = 0 ; v < V ; v++){
+        if( visited[v] == false && dist[v] <= min){
+            min = dist[v];
+            minIndex =  v;
+        }
+    }
+    
+    return minIndex;
+    
+}
+
+void printDistance(int dist[]){
+    for(int i = 0 ; i < V ; i++){
+        cout<<i<<". tepeye mesafe : "<<dist[i]<<"\n";
+    }
+}
+
+void dijkstra(int graph[V][V] , int s,int f){
+    
+    int dist[V];
+    bool visited[V];
+    
+    //mesafelere default qiymet menimsedilir
+    //tepeler false
+    for(int i = 0 ; i < V ; i++){
+        dist[i] = INF;
+        visited[i] = false;
+    }
+    
+    //ozunden ozune mesafe hemishe sifirdir
+    dist[s] = 0;
+    
+    for(int i = 0 ; i < V - 1 ; i++){
+        
+        // hal-hazirda oldugu tepeden en qisa yolu tapdi
+        int u = minDistance(dist, visited);
+        
+        // ve hemin tepeni true eledi , proses bu tepe uzerinde bas verecek
+        visited[u] = true;
+        
+        for(int v = 0 ; v < V ; v++){
+            
+            //Mesafenin deyishmesi uchun SERTLER
+            //1. Bu tepeni gezib ve ya gezmeyib
+            //2. Tepeler arasinda yol varmi ?
+            //3. Start noqteden hal hazirda olan tepeye mesafe en qisa mesafedirmi?
+            
+            if(!visited[v] && graph[u][v] && dist[u] != INF 
+                    && dist[u] + graph[u][v] < dist[v]){
+                dist[v] = dist[u] + graph[u][v];
+            }
+            
+        }  
+        
+    }
+    
+    printDistance(dist);
+    
+    cout<<"\n\nRESULT : "
+            "start "<<s<<" -> finish "<<f<<""
+            " - short distance "<<dist[f]<<"\n";
+    
+}
+
+int main(int argc, char** argv) {
+    
+    int graph[V][V] = { 
+        { 0, 4, 0, 0, 0, 0, 0, 8, 0 }, 
+        { 4, 0, 8, 0, 0, 0, 0, 11, 0 }, 
+        { 0, 8, 0, 7, 0, 4, 0, 0, 2 }, 
+        { 0, 0, 7, 0, 9, 14, 0, 0, 0 }, 
+        { 0, 0, 0, 9, 0, 10, 0, 0, 0 }, 
+        { 0, 0, 4, 14, 10, 0, 2, 0, 0 }, 
+        { 0, 0, 0, 0, 0, 2, 0, 1, 6 }, 
+        { 8, 11, 0, 0, 0, 0, 1, 0, 7 }, 
+        { 0, 0, 2, 0, 0, 0, 6, 7, 0 } 
+    }; 
+    
+    dijkstra(graph,0,4);
+
+    return 0;
+}
