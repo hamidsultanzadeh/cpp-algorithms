@@ -25,9 +25,23 @@ int minDistance(int dist[],bool visited[]){
     
 }
 
-void printDistance(int dist[]){
+void printPath(int parent[],int j){
+    
+    if(parent[j] == -1){
+        return;
+    }
+    
+    printPath(parent,parent[j]);
+    
+    cout<<j<<" ";
+    
+}
+
+void printDistance(int dist[],int parent[],int s){
     for(int i = 0 ; i < V ; i++){
-        cout<<i<<". tepeye mesafe : "<<dist[i]<<"\n";
+        cout<<s<<" -> "<<i<<" distance : "<<dist[i] << "\t0 ";
+        printPath(parent,i);
+        cout<<endl;
     }
 }
 
@@ -35,12 +49,14 @@ void dijkstra(int graph[V][V] , int s,int f){
     
     int dist[V];
     bool visited[V];
+    int parent[V];
     
     //mesafelere default qiymet menimsedilir
     //tepeler false
     for(int i = 0 ; i < V ; i++){
         dist[i] = INF;
         visited[i] = false;
+        parent[i] = -1;
     }
     
     //ozunden ozune mesafe hemishe sifirdir
@@ -64,13 +80,14 @@ void dijkstra(int graph[V][V] , int s,int f){
             if(!visited[v] && graph[u][v] && dist[u] != INF 
                     && dist[u] + graph[u][v] < dist[v]){
                 dist[v] = dist[u] + graph[u][v];
+                parent[v] = u;
             }
             
         }  
         
     }
     
-    printDistance(dist);
+    printDistance(dist,parent,s);
     
     cout<<"\n\nRESULT : "
             "start "<<s<<" -> finish "<<f<<""
