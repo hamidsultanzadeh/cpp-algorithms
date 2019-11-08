@@ -1,0 +1,54 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 8, 2019, 8:47 PM
+ */
+
+#include <bits/stdc++.h>
+#define INF 1000;
+using namespace std;
+
+int V;
+int graph[100][100];
+int dist[100][100];
+
+void floydWarshall(){
+    
+    for (int i = 0; i < V; i++)  
+        for (int j = 0; j < V; j++)  
+            dist[i][j] = graph[i][j]; 
+    
+    
+    for (int k = 0; k < V; k++){ // tepeler
+        for (int i = 0; i < V; i++){ // tepeler
+            for (int j = 0; j < V; j++){ // qisa mesafeler
+                if (dist[i][k] + dist[k][j] < dist[i][j])  
+                    dist[i][j] = dist[i][k] + dist[k][j];  
+            }  
+        }  
+    }
+    
+}
+
+int main(int argc, char** argv) {
+    
+    cin>>V;
+    
+    for (int i = 0; i < V; i++)  
+        for (int j = 0; j < V; j++)  
+            cin>>graph[i][j];
+    
+    floydWarshall();
+    
+    for (int i = 0; i < V; i++){
+        for (int j = 0; j < V; j++){
+            cout<<dist[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+    
+    //https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
+
+    return 0;
+}
