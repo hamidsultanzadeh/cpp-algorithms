@@ -1,0 +1,26 @@
+/* 
+ * File:   deque.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 11, 2019, 5:24 PM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(int argc, char** argv) {
+    
+    deque<int> deq;
+    
+    deq.push_back(1);
+    deq.push_front(2);
+    
+    for(auto x  :  deq) cout<<x<<" ";
+    cout<<"\n"<<deq.size();
+    
+    deq.pop_back();
+    deq.pop_front();
+    
+    cout<<"\n"<<deq.size();
+
+    return 0;
+}

@@ -1,0 +1,45 @@
+/* 
+ * File:   priority_queue.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 11, 2019, 5:48 PM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(int argc, char** argv) {
+    
+    priority_queue<int,vector<int>,greater<int>> pq; // > order
+    priority_queue<int> pq2; // < order
+    
+    pq.push(1);
+    pq.push(1);
+    pq.push(13);
+    pq.push(1);
+    pq.push(12);
+    pq.push(12);
+    pq.push(12);
+    
+    pq2.push(1);
+    pq2.push(1);
+    pq2.push(13);
+    pq2.push(1);
+    pq2.push(12);
+    pq2.push(12);
+    pq2.push(12);
+    
+    while(!pq.empty()){
+        cout<<pq.top()<<" ";
+        pq.pop();
+    }
+    
+    cout<<"\n";
+    
+    while(!pq2.empty()){
+        cout<<pq2.top()<<" ";
+        pq2.pop();
+    }
+    
+
+    return 0;
+}
