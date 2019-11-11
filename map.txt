@@ -1,0 +1,52 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 11, 2019, 10:06 AM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(int argc, char** argv) {
+    
+    map< string , int > mp;
+    
+    mp["armud"] = 23;
+    
+    cout<<mp["armud"]<<" ";
+  
+    mp["armud"] = 233;
+    
+    cout<<mp["armud"]<<" ";
+    
+    if(mp.count("alma")) cout<<"True";
+    else cout<<"False";
+    
+    mp["alma"] = 323;
+    mp["almaarmud"] = 233323;
+    
+    cout<<"\n";
+    
+    for(auto x : mp) cout<<x.first<<" "<<x.second<<"\n";
+    
+    auto it0 = mp.lower_bound("alma");
+    
+    cout<<"***************\n";
+   
+    mp.erase(it0);
+
+    for(auto x : mp) cout<<x.first<<" "<<x.second<<"\n";
+
+    
+    map<int, int> test;
+    test[0] = 1;
+    test[1] = 2;
+    
+    auto it = test.lower_bound(0);
+    
+    test.erase(it);
+    
+    for(auto x : test) cout<<x.first<<" => "<<x.second<<"\n";
+
+    return 0;
+}
