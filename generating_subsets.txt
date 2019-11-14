@@ -1,0 +1,43 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 13, 2019, 9:44 AM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void allSubset(int arr[],int size){
+    // powSetSize - butun kombinasiyalarin sayi
+    int powSetSize = pow(2,size);
+     
+    // hemin kombinasiyalari gezen deyishen
+    for(int counter = 0 ; counter < powSetSize ; counter++){
+        cout<<"{ ";
+        // massivin elementlerini gezen deyishen
+        for(int j = 0 ; j < size ; j++){
+            if(counter & (1 << j)){
+                cout<<arr[j]<<" ";
+                //cout<<(counter & (1 << j))<<" ";
+            }
+            //cout<<(counter & (1 << j))<<" ";
+            //cout<<counter << " ";
+
+        }
+        cout<<"}\n";
+    }
+    
+}
+
+int main(int argc, char** argv) {
+    
+    int arr[] = {10,12,13};
+    int size = sizeof(arr)/sizeof(int);
+    
+    cout<<"All subsets :\n";
+    
+    allSubset(arr,size);   
+    
+    return 0;
+}
