@@ -1,0 +1,64 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 16, 2019, 8:36 PM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void allSubsetsK(int arr[], int k, int s, int c, int l,bool check[]){
+    
+    /*
+     * k - kombinasiyanin nece reqemli olmasini teyin edir
+     * s - start index
+     * c - hal hazirda elde ede bildiyi ededlerin sayi
+     * l - massivin uzunlugu
+     * check - 
+     */
+    
+    cout<<s<<" "<<c<<" "<<"\t";
+    
+    if(k < c){
+        cout<<"K < C"<<endl;
+        return;
+    }
+    
+    else  if(k==c){
+        cout<<"K == C"<<endl<<"RESULT : ";
+        for(int i = 0 ; i < l ; i++){
+            if(check[i] == true){
+                cout<<arr[i]<<" ";
+            }
+        }
+        cout<<endl;
+        return ;
+    }
+    
+    if(s == l){
+        cout<<"S == L"<<endl;
+        return;
+    }
+    
+    cout<<"ELSE"<<endl;
+    
+    check[s]=true;
+    allSubsetsK(arr,k,s+1,c+1,l,check);
+    check[s]=false;
+    allSubsetsK(arr,k,s+1,c,l,check);
+    
+}
+
+int main(int argc, char** argv) {
+    
+    int arr[] = {13,15,17};
+    int size = sizeof(arr)/sizeof(int);
+    bool check[size];
+    int k;
+    cin>>k;
+    
+    allSubsetsK(arr,k,0,0,size,check);
+
+    return 0;
+}
