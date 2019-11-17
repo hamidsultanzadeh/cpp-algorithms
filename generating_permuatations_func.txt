@@ -1,0 +1,32 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 17, 2019, 12:02 PM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void permute(int arr[], int size){
+    
+    do{
+        for(int i = 0 ; i < size ; i++){
+            cout<<arr[i]<<" ";
+        }
+        
+        cout<<endl;
+        
+    }while(next_permutation(arr,arr+size));
+    
+}
+
+int main(int argc, char** argv) {
+    
+    int arr[] = {13,14,15};
+    int size = sizeof(arr)/sizeof(int);
+    
+    permute(arr,size);
+
+    return 0;
+}
