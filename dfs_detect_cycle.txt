@@ -1,0 +1,104 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 20, 2019, 7:52 PM
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Graph{
+    int V;
+    
+    list<int> *adj;
+    
+    bool isCycleUtil(int v, bool visited[], int parent);
+    
+public:
+    
+    Graph(int V);
+    
+    void addEdge(int v, int w);
+    
+    bool isCycle();
+    
+};
+
+Graph::Graph(int V){
+    this->V = V;
+    adj = new list<int>[V];
+}
+
+void Graph::addEdge(int v, int w){
+    adj[v].push_back(w);
+    adj[w].push_back(v);
+}
+
+bool Graph::isCycleUtil(int v, bool visited[], int parent){
+    
+    visited[v] = true;
+    
+    for(auto it = adj[v].begin() ; it!=adj[v].end() ; it++){
+        
+        if(!visited[*it]){
+            if(isCycleUtil(*it,visited,v)){
+                return true;
+            }
+        } else if(*it != parent){
+            return true;
+        }
+        
+    }
+    
+    return false;
+    
+}
+
+bool Graph::isCycle(){
+    
+    bool *visited = new bool[V];
+    
+    for(int i = 0 ; i < V ; i++) visited[i] = false;
+    
+    for(int u = 0 ; u < V ; u++){
+        if(!visited[u])
+            if(isCycleUtil(u,visited,-1)){
+                return true;                
+            }
+    }
+    
+    return false;
+    
+}
+
+int main(int argc, char** argv) {
+    
+    /*int node,e,a,b;
+    cin>>node>>e;
+    
+    Graph g(++node);
+    
+    for(int i = 0 ; i < e ; i++){
+        cin>>a>>b;
+        g.addEdge(a,b);
+    }*/
+    
+    Graph g(7);
+    
+    g.addEdge(1,2);
+    g.addEdge(2,3);
+    g.addEdge(3,4);
+    g.addEdge(4,5);
+    g.addEdge(5,2);
+    g.addEdge(4,6);
+    
+    if(g.isCycle()){
+        cout<<"Yes";
+    } else {
+        cout<<"No";
+    }
+    
+    
+    return 0;
+}
