@@ -1,0 +1,84 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 21, 2019, 10:49 AM
+ */
+
+#include <bits/stdc++.h>
+#define N 4
+using namespace std;
+
+void printSolution(int board[N][N]){
+    
+    for(int i = 0 ; i < N ; i++){
+        for(int j = 0 ; j < N ; j++){
+            cout<<board[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+}
+
+bool isSafe(int board[N][N],int row, int col){
+    
+    int i,j;
+    
+    //setrin bosh olduguna baxir. verilmish sutuna qeder    
+    for(i = 0 ; i < col ; i++)
+        if(board[row][i])
+            return false;
+    
+    //yuxari dioqanali yoxlayir
+    for(i = row , j = col ; i>=0 && j>=0 ; i-- , j--)
+        if(board[i][j])
+            return false;
+    
+    //asagi dioqanali yoxlayir
+    for(i = row , j = col ; j>=0 && i<N ; i++, j--)
+        if(board[i][j])
+            return false;
+    
+    return true;
+    
+}
+
+bool solveNQUtil(int board[N][N],int col){
+    
+    if(col == N){
+        printSolution(board);
+        cout<<endl;
+        return true;
+    }
+    
+    bool res = false;
+    
+    for(int i = 0 ; i < N ; i++){
+        if(isSafe(board, i ,col)){
+            board[i][col] = 1;
+            
+            res = solveNQUtil(board, col + 1) || res;
+            
+            board[i][col] = 0;
+        }
+    }
+    
+    return res;
+    
+}
+
+void solveNQ(){
+    
+    int board[N][N];
+    
+    memset(board,0,sizeof(board));
+   
+    if(!solveNQUtil(board, 0)){
+        //printSolution(board);
+        cout<<"No";
+    }
+}
+
+int main(int argc, char** argv) {
+    solveNQ();
+    return 0;
+}
