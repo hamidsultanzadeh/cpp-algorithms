@@ -1,0 +1,55 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 26, 2019, 10:16 PM
+ */
+
+#include <bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define e18 1000000000000000000
+#define ull unsigned long long
+using namespace std;
+
+//Time complexity : O(n*log(log(n)))
+
+void sieveOfEratosthenes(int n){
+    
+    bool prime[n+1];
+    memset(prime, true, sizeof(prime));
+    
+    for(int i = 2 ; i*i <= n ; i++){
+        
+        // eger deyishmeyibse , bu sadedir
+        // Etrafli : 
+        // asagidaki merhele deyishme merhelesidir. eger o merheleden 
+        // qiymeti true olaraq qalibsa, demeli sadedir..
+        if(prime[i]){
+            
+            // hemin sade ededin bolunenlerini false edirik.
+            // yerde qalanlar true deyerler sade ededlerdir
+            for(int j = i*i ; j<=n ; j+=i)
+                prime[j] = false;
+            
+        }
+        
+    }
+    
+    for(int i = 2 ; i <= n ; i++)
+        if(prime[i])
+            cout<<i<<" ";
+    
+}
+
+int main(int argc, char** argv) {
+    
+    int n;
+    cin>>n;
+    
+    sieveOfEratosthenes(n);
+
+    return 0;
+}
