@@ -1,0 +1,84 @@
+/* 
+ * File:   main.cpp
+ * Author: hamidsultanzadeh
+ *
+ * Created on November 30, 2019, 12:03
+ */
+
+#include <bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define ll long long
+#define ull unsigned long long
+#define DEBUG(code,x) cout<<"DEBUG - "<<code<<" : "<<x<<endl;
+using namespace std;
+
+int x[100],y[100];
+
+int arr[5] = {2, 4 , 6, 7, 1 };
+
+void calcSubArray(int a[],int n, int c){
+    
+    for(int i = 0 ; i < (1 << n) ; i++){
+        
+        int sum = 0;
+        
+        for(int j = 0 ; j < n ; j++){
+            
+            if(i & (1 << j)){
+                sum+=arr[j+c];
+                // subsetlerin cemi
+            }
+        }
+        a[i] = sum; // uygun indekse menimsetme
+        
+    }
+    
+}
+
+int solveSubsetSum(int n, int sum){
+    
+    calcSubArray(x,n/2 , 0); // arr - i parcalayib, cemleri x a yigiriq
+    calcSubArray(y,n-n/2,n/2); // arr i parcalayib cemleri y a yigiriq
+    
+    int sizeX = (1 << n/2);
+    int sizeY = (1 << (n-n/2));
+    
+    sort(y,y+sizeY); // binary search istifade etmek uchun sort edirik
+    
+    int mx = 0; // max cem
+    
+    for(int i = 0 ; i < sizeX ; i++){
+        if(x[i] <= sum){
+            
+            int p = lower_bound(y,y+sizeY,sum-x[i]) - y; // binary search
+            
+            if(p == sizeY || y[p] != (sum - x[i])) // eded duzgun tapilmayibsa
+                p--;
+            
+            mx = max(y[p]+x[i],mx); // max i teyini
+            
+        }
+        
+    }
+    
+    return mx;
+    
+}
+
+
+int main(int argc, char** argv) {
+    
+    ios_base::sync_with_stdio(false); cin.tie(0);
+    
+    int size = sizeof(arr)/sizeof(int);
+    
+    int s = 10;
+    
+    cout<<solveSubsetSum(size, s);
+
+    
+    return 0;
+}
